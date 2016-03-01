@@ -1,0 +1,22 @@
+{
+  "name": "bzmean",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "beingzero"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/sandeepsajiru/bzmean",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
