@@ -1,6 +1,21 @@
 var express = require('express');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+
+var dbName = "bzmean";
+var mongoConnString = "mongodb://localhost/"+dbName;
+mongoose.connect(mongoConnString);
+var dbCon = mongoose.connection;
+dbCon.on('error', function(err){
+   console.log('failed to connect to db, make sure it is running '+err);
+});
+dbCon.once('open', function callback(){
+   console.log('Mongodb connected');
+});
+
+
 
 var app = express();
 
