@@ -1,1 +1,10 @@
-h3 This is Main Partial - {{ bzVar }}
+.container
+    .jumbotron
+        h1 Being Zero
+        p Welcome to Being Zero.  A world full of creative learning.
+        
+    .row
+        .col-md-6
+            div(ng-include="'/partials/home-left'")
+        .col-md-6
+            div(ng-include="'/partials/home-right'")
