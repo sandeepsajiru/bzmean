@@ -56,6 +56,10 @@ app.get('/', function (req, res) {
   res.render('index', {pageTitle : 'Being Zero', dbMessage : dbMessage});
 });
 
+app.get('*', function (req, res) {
+  res.render('index');
+});
+
 var port=3000;
 app.listen(port, function () {
   console.log('Example app listening on port http://localhost:'+port);
