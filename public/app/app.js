@@ -4,6 +4,8 @@ angular.module('app').config(function($routeProvider, $locationProvider){
     $routeProvider.when('/', {templateUrl:'/partials/main', controller:'mainCtrl'})
         .when('/login', {templateUrl:'/partials/login', controller:'loginCtrl'})
         .when('/signup', {templateUrl:'/partials/signup', controller:'signupCtrl'});
+    
+    $locationProvider.html5Mode(true);
 });
 
 angular.module('app').controller('mainCtrl', function($scope){
