@@ -12,9 +12,8 @@ app.set('view engine', 'jade');
 app.use(express.static(__dirname+'/public'));
 
 
-app.get('/partials:pp', function(req, res){
+app.get('/partials/:pp', function(req, res){
     res.render('partials/'+req.params.pp);
-    console.log('partial requested partials/'+req.params.pp)
 });
 app.get('/', function (req, res) {
   res.render('index', {pageTitle : 'Being Zero'});
