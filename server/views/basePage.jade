@@ -2,11 +2,8 @@ doctype html
 html(lang="en")
   head
     title= pageTitle
-    link(href="/favicon.ico", rel="shortcut icon", type="image/x-icon")
-    link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.css")
-    link(rel="stylesheet", href="/vendor/toastr/toastr.css")
+    include styles
   body
     block page-content
-    script(type="text/javascript", href="/vendor/jquery/dist/jquery.js")
-    script(type="text/javascript", href="/vendor/bootstrap/dist/js/bootstrap.js")
+    include scripts
     
