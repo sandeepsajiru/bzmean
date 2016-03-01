@@ -3,8 +3,11 @@ var logger = require('morgan');
 var app = express();
 
 app.use(logger('dev'));
+app.set('views', __dirname+"/server/views");
+app.set('view engine', 'jade');
+
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  res.render('index');
 });
 
 var port=3000;
