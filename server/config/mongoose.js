@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var crypto = require('crypto');
 
 module.exports=function(config){
     
@@ -16,14 +17,23 @@ module.exports=function(config){
         firstName : String,
         lastName : String,
         userName : String,
-        password : String
+        salt : String,
+        hashed_pwd : String
     });
     
+    userSchema.methods = {
+        authenticate : function(passwordToMatch){
+            return hashPwd(this.salt, passwordToMatch) === this.hashed_pwd;
+        }
+    }
     var User = mongoose.model('User', userSchema);
     
     User.find({}).exec(function(err, coll){
         if(coll.length===0){
-            User.create({firstName:'Being', lastName:'Zero', userName:'beingzero', password:'beingzero'})
+            var salt, hash;
+            salt = createSalt();
+            hash=hashPwd(salt, 'beingzero');
+            User.create({firstName:'Being', lastName:'Zero', userName:'beingzero', salt:salt, hashed_pwd:hash})
             console.log('Created username beingzero');
         }
     });
@@ -53,4 +63,15 @@ module.exports=function(config){
 */
 
     
+}
+
+
+
+function createSalt(){
+    return crypto.randomBytes(128).toString('base64');
+}
+
+function hashPwd(salt, pwd){
+    var hmac = crypto.createHmac('sha1', salt);
+    return hmac.update(pwd).digest('hex');
 }
