@@ -1,13 +1,6 @@
-doctype html
-html(lang="en")
-  head
-    title= pageTitle
-    link(href="/favicon.ico", rel="shortcut icon", type="image/x-icon")
-    script(type='text/javascript').
-      if (foo) {
-         bar(1 + 5)
-      }
-  body
+extends basePage
+
+block page-content
     h1 Jade - node template engine
     #container.col
       if youAreUsingJade
