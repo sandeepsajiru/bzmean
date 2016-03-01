@@ -4,6 +4,28 @@ html(lang="en")
     title= pageTitle
     include styles
   body(ng-app="app")
+    .navbar.navbar-inverse.navbar-fixed-top
+        .container
+            .navbar-header
+                button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href="#") Being Zero
+            .navbar-collapse.collapse
+                ul.nav.navbar-nav
+                    li
+                        a(href="#") Home
+                    li
+                        a(href="/signup") Signup
+                    li
+                        a(href="/login") Login
     block page-content
+    
+    
     include scripts
     
+    
+    footer.container.text-center
+        p &copy; Being Zero 2014-2016
