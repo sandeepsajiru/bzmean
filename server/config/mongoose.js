@@ -19,7 +19,7 @@ module.exports=function(config){
         password : String
     });
     
-    var User = mongoose.model('Use', userSchema);
+    var User = mongoose.model('User', userSchema);
     
     User.find({}).exec(function(err, coll){
         if(coll.length===0){
