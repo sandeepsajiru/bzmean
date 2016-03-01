@@ -9,7 +9,11 @@ module.exports = function(app){
         res.render('index');
     });
     
-    app.post('/login', auth.authenticate )
+    app.post('/login', auth.authenticate );
+    app.post('/logout', function(req, res){
+        req.logout();
+        res.end();
+    });
 
     app.get('*', function (req, res) {
         res.render('index');
