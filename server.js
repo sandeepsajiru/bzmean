@@ -3,7 +3,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-
+// DB Connection
 var dbName = "bzmean";
 var mongoConnString = "mongodb://localhost/"+dbName;
 mongoose.connect(mongoConnString);
@@ -15,6 +15,28 @@ dbCon.once('open', function callback(){
    console.log('Mongodb connected');
 });
 
+// DB Read
+
+var msgSchema = mongoose.Schema({msg : String});
+var msgModel = mongoose.model('Message', msgSchema);
+
+var dbMessage='';
+msgModel.findOne().exec(function(err, msgDocument){
+    
+   if(err)
+       console.log('Error Reading the Message from DB');
+    else{
+        if(msgDocument==null){
+            var msg = new msgModel({'msg':'This is a DB message'});
+            msg.save();
+            console.log('First time DB Connection, Saved the message.  Will be loaded next time');
+        }
+        else{
+            console.log('Read Message: '+msgDocument.msg);
+            dbMessage = msgDocument.msg;
+        }
+    }
+});
 
 
 var app = express();
@@ -31,7 +53,7 @@ app.get('/partials/:pp', function(req, res){
     res.render('partials/'+req.params.pp);
 });
 app.get('/', function (req, res) {
-  res.render('index', {pageTitle : 'Being Zero'});
+  res.render('index', {pageTitle : 'Being Zero', dbMessage : dbMessage});
 });
 
 var port=3000;
